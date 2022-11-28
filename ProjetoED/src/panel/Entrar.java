@@ -16,6 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import panel.enumeracoes.Fonte;
 
+import controller.ControllerCadastro;
+
 public class Entrar extends JFrame {
 
 	private JPanel contentPane;
@@ -36,6 +38,15 @@ public class Entrar extends JFrame {
 	}
 	
 	public Entrar() {
+		
+		ControllerCadastro contCad = new ControllerCadastro();
+		try {
+			contCad.insereArquivoAluno("C:\\","AlunosGeral.csv");
+			contCad.insereArquivoProfessor("C:\\","ProfessoresGeral.csv");
+			} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 509, 353);
 		setResizable(false);
