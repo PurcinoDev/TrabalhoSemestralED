@@ -39,13 +39,13 @@ public class Entrar extends JFrame {
 	
 	public Entrar() {
 		
-		ControllerCadastro contCad = new ControllerCadastro();
-		try {
-			contCad.insereArquivoAluno("C:\\","AlunosGeral.csv");
-			contCad.insereArquivoProfessor("C:\\","ProfessoresGeral.csv");
-			} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+//		ControllerCadastro contCad = new ControllerCadastro();
+//		try {
+//			contCad.insereArquivoAluno("C:\\","AlunosGeral.csv");
+//			contCad.insereArquivoProfessor("C:\\","ProfessoresGeral.csv");
+//			} catch (Exception e1) {
+//			e1.printStackTrace();
+//		}
 		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 509, 353);
@@ -81,9 +81,14 @@ public class Entrar extends JFrame {
 		JButton btnEntrar = new JButton("ENTRAR");
 		btnEntrar.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 11));
 		btnEntrar.addActionListener((ActionEvent e) -> {
-			TelaAluno aluno = new TelaAluno();
-			aluno.setVisible(true);
-			entrar.setVisible(false);
+			if (tfUsuario.getText().isEmpty() || 
+			    (!(tfUsuario.getText().contentEquals("aluno1")) || !(Arrays.equals("12345".toCharArray(), tfSenha.getPassword())))) {
+				JOptionPane.showMessageDialog(null, "Insira um usuário e senha corretamente para acessar");
+			} else {
+				TelaAluno aluno = new TelaAluno();
+				aluno.setVisible(true);
+				entrar.setVisible(false);
+			}
 		});
 		btnEntrar.setBounds(236, 223, 118, 23);
 		contentPane.add(btnEntrar);
