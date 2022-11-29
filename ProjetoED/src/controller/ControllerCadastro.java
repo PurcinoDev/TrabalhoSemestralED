@@ -17,6 +17,63 @@ public class ControllerCadastro {
 	public ControllerCadastro() {
 		super();
 	}
+	
+	public void readArquivoAluno(String caminho, String curso) {
+		
+	}
+	
+	public void readArquivoProfessor(String caminho, String curso) throws Exception {
+		if (curso == "ADS") {
+			fileToListProfessor("C:\\", "Professores_ADS");
+		} else if (curso == "COMEX") {
+			fileToListProfessor("C:\\", "Professores_COMEX");
+		} else if (curso == "POLIM") {
+			fileToListProfessor("C:\\", "Professores_POLIM");
+		} else if (curso == "LOG") {
+			fileToListProfessor("C:\\", "Professores_LOG");
+		}
+	}
+
+	public void fileToListProfessor(String caminho, String nomeArquivo) throws Exception {
+
+		File dir = new File(caminho);
+
+		if (dir.exists() && dir.isDirectory()) {
+			Lista lProfessores = new Lista();
+			File arq = new File(caminho, nomeArquivo);
+
+			FileInputStream fluxo = new FileInputStream(arq);
+			InputStreamReader leFluxo = new InputStreamReader(fluxo);
+			BufferedReader buffer = new BufferedReader(leFluxo);
+			String linha = buffer.readLine();
+
+			while (linha != null) {
+				if (linha.contains(";")) {
+					String[] vetorDeLinha = linha.split(";");
+					Professor professor = new Professor();
+					professor.usuario = vetorDeLinha[0];
+					professor.curso = vetorDeLinha[1];
+					professor.email = vetorDeLinha[2];
+					professor.especialidade = vetorDeLinha[3];
+					professor.horaInicioDisp = new SimpleDateFormat("HH:mm").parse(vetorDeLinha[4]);
+					professor.horaFimDisp = new SimpleDateFormat("HH:mm").parse(vetorDeLinha[5]);
+					professor.senha = vetorDeLinha[6];
+					professor.exp = vetorDeLinha[7];
+					professor.coordenador = Boolean.valueOf(vetorDeLinha[7]);
+					if (lProfessores.isEmpty()) {
+						lProfessores.addFirst(professor);
+					} else {
+						lProfessores.addLast(professor);
+					}
+
+					linha = buffer.readLine();
+				}
+			}
+			buffer.close();
+			leFluxo.close();
+			fluxo.close();
+		}
+	}
 
 	public void insereArquivoAluno(String caminho, String nomeArquivo) throws Exception {
 
@@ -103,9 +160,9 @@ public class ControllerCadastro {
 		}
 
 	}
-	
+
 	public void novoCadastro() {
-		
+
 	}
-	
+
 }
