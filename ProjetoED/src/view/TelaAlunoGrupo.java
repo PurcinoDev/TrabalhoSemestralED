@@ -1,4 +1,4 @@
-package panel;
+package view;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import panel.enumeracoes.Fonte;
+import enumeracoes.Fonte;
 
 public class TelaAlunoGrupo extends JFrame {
 

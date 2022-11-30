@@ -1,4 +1,4 @@
-package panel.enumeracoes;
+package enumeracoes;
 
 public enum Fonte {
 	

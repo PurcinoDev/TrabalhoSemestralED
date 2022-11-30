@@ -1,22 +1,22 @@
-package panel;
+package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import panel.enumeracoes.Fonte;
-
-import controller.ControllerCadastro;
+import enumeracoes.Fonte;
 
 public class Entrar extends JFrame {
 
