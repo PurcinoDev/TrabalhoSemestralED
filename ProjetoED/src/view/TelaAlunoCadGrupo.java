@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import panel.enumeracoes.Fonte;
+import enumeracoes.Fonte;
 import javax.swing.JList;
 import javax.swing.border.MatteBorder;
 
@@ -33,7 +33,8 @@ public class TelaAlunoCadGrupo extends JFrame {
 	private JComboBox<String> comboModalidadeGrupo;
 	private JComboBox<String> comboOrientador;
 	private JTextField tfTemaGrupo;
-
+	public GrupoTCC grupoTCC;
+	
 	public TelaAlunoCadGrupo() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 554, 407);
@@ -121,12 +122,12 @@ public class TelaAlunoCadGrupo extends JFrame {
 
 		JButton btnSalvarGrupo = new JButton("SALVAR");
 		btnSalvarGrupo.addActionListener((ActionEvent e) -> {
-			if (tfNomeGrupo.getText().isEmpty()
-					|| comboModalidadeGrupo.getSelectedItem() == "=========== Escolha sua Modalidade ===========" || 
-					comboOrientador.getSelectedItem() == "=========== Escolha seu Orientador ===========") {
+			if (tfNomeGrupo.getText().isEmpty() ||
+					comboModalidadeGrupo.getSelectedItem() == "=========== Escolha sua Modalidade ===========" || 
+					comboOrientador.getSelectedItem() == "============ Escolha seu Orientador ===========") {
 				JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos de cadastro do TCC");
 			} else {
-				GrupoTCC grupoTCC = new GrupoTCC();
+				grupoTCC = new GrupoTCC();
 				grupoTCC.nome = tfNomeGrupo.getText();
 				grupoTCC.modalidade = (String) comboModalidadeGrupo.getSelectedItem();
 				grupoTCC.Professor = (String) comboOrientador.getSelectedItem();

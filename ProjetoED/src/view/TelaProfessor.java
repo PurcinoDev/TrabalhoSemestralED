@@ -35,6 +35,8 @@ public class TelaProfessor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaProfessor() {
+		TelaAlunoCadGrupo grupo = new TelaAlunoCadGrupo();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 266);
 		contentPane = new JPanel();

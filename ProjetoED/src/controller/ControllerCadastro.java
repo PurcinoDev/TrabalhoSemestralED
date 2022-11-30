@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 
-import br.com.leandrocolevati.Lista;
+import br.com.leandrocolevati.Lista.*;
 import model.Aluno;
 import model.Professor;
 public class ControllerCadastro {
