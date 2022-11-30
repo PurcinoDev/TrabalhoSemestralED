@@ -7,10 +7,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 
-import br.com.leandrocolevati.Lista.Lista;
+import br.com.leandrocolevati.Lista;
 import model.Aluno;
 import model.Professor;
-
 public class ControllerCadastro {
 	
 	public ControllerCadastro() {
@@ -22,19 +21,23 @@ public class ControllerCadastro {
 	}
 	
 	public void readArquivoProfessor(String caminho, String curso) throws Exception {
-		if (curso == "ADS") {
-			fileToListProfessor("C:\\", "Professores_ADS");
-		} else if (curso == "COMEX") {
-			fileToListProfessor("C:\\", "Professores_COMEX");
-		} else if (curso == "POLIM") {
-			fileToListProfessor("C:\\", "Professores_POLIM");
-		} else if (curso == "LOG") {
-			fileToListProfessor("C:\\", "Professores_LOG");
+		switch (curso) {
+			case "ADS":
+				fileToListProfessor("C:\\", "Professores_ADS");
+			break;
+			case "COMEX":
+				fileToListProfessor("C:\\", "Professores_COMEX");
+			break;
+			case "POLIM":
+				fileToListProfessor("C:\\", "Professores_POLIM");
+			break;
+			case "LOG":
+				fileToListProfessor("C:\\", "Professores_LOG");
+			break;
 		}
 	}
 
 	public void fileToListProfessor(String caminho, String nomeArquivo) throws Exception {
-
 		File dir = new File(caminho);
 
 		if (dir.exists() && dir.isDirectory()) {
