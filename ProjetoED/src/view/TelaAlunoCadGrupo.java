@@ -1,4 +1,4 @@
-package panel;
+package view;
 
 import model.Aluno;
 import model.GrupoTCC;
@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 
 import panel.enumeracoes.Fonte;
 import javax.swing.JList;
+import javax.swing.border.MatteBorder;
 
 public class TelaAlunoCadGrupo extends JFrame {
 
@@ -31,7 +32,6 @@ public class TelaAlunoCadGrupo extends JFrame {
 	private JTextField tfNomeGrupo;
 	private JComboBox<String> comboModalidadeGrupo;
 	private JComboBox<String> comboOrientador;
-	private JTextField tfNomeIntegrantes;
 	private JTextField tfTemaGrupo;
 
 	public TelaAlunoCadGrupo() {
@@ -95,11 +95,6 @@ public class TelaAlunoCadGrupo extends JFrame {
 		lblProfessorOrientador.setBounds(10, 134, 158, 14);
 		panelModal.add(lblProfessorOrientador);
 
-		tfNomeIntegrantes = new JTextField();
-		tfNomeIntegrantes.setColumns(10);
-		tfNomeIntegrantes.setBounds(10, 197, 329, 20);
-		panelModal.add(tfNomeIntegrantes);
-
 		JLabel lblModalidadeGrupo_1_1 = new JLabel("Nome dos Integrantes");
 		lblModalidadeGrupo_1_1.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 12));
 		lblModalidadeGrupo_1_1.setBounds(10, 181, 158, 14);
@@ -121,7 +116,7 @@ public class TelaAlunoCadGrupo extends JFrame {
 			aluno.setVisible(true);
 			setVisible(false);
 		});
-		btnCancelarGrupo.setBounds(34, 312, 118, 23);
+		btnCancelarGrupo.setBounds(10, 312, 86, 23);
 		panelModal.add(btnCancelarGrupo);
 
 		JButton btnSalvarGrupo = new JButton("SALVAR");
@@ -140,8 +135,20 @@ public class TelaAlunoCadGrupo extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnSalvarGrupo.setBounds(186, 312, 118, 23);
+		btnSalvarGrupo.setBounds(253, 312, 86, 23);
 		panelModal.add(btnSalvarGrupo);
+		
+		JList listaIntegrantes = new JList();
+		listaIntegrantes.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		listaIntegrantes.setBackground(new Color(240, 240, 240));
+		panelModal.add(listaIntegrantes);
+		
+		JButton btnAtualizarAlunos = new JButton("AtualizarAlunos");
+		btnAtualizarAlunos.addActionListener((ActionEvent e) -> {
+			
+		});
+		btnAtualizarAlunos.setBounds(120, 312, 111, 23);
+		panelModal.add(btnAtualizarAlunos);
 		
 		JLabel lblSemGrupo = new JLabel("Voc\u00EA n\u00E3o tem grupo");
 		lblSemGrupo.setHorizontalAlignment(SwingConstants.CENTER);
