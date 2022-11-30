@@ -82,11 +82,19 @@ public class Entrar extends JFrame {
 		btnEntrar.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 11));
 		btnEntrar.addActionListener((ActionEvent e) -> {
 			if (tfUsuario.getText().isEmpty() || 
-			    (!(tfUsuario.getText().contentEquals("aluno1")) || !(Arrays.equals("12345".toCharArray(), tfSenha.getPassword())))) {
+			(!(tfUsuario.getText().contentEquals("aluno1")) || 
+			(!(tfUsuario.getText().contentEquals("professor1")) ||
+			!(Arrays.equals("12345".toCharArray(), tfSenha.getPassword()))))) {
 				JOptionPane.showMessageDialog(null, "Insira um usuário e senha corretamente para acessar");
 			} else {
-				TelaAluno aluno = new TelaAluno();
-				aluno.setVisible(true);
+				if (tfUsuario.getText().contentEquals("aluno1")) {
+					TelaAluno aluno = new TelaAluno();
+					aluno.setVisible(true);
+				} else if (tfUsuario.getText().contentEquals("professor1")) {
+					TelaProfessor professor = new TelaProfessor();
+					professor.setVisible(true);
+				}
+				
 				entrar.setVisible(false);
 			}
 		});
