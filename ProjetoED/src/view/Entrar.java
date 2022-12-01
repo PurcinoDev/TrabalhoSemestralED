@@ -4,10 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.Arrays;
 
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -108,18 +106,11 @@ public class Entrar extends JFrame {
 
 	private void entrar() {
 		if (tfUsuario.getText().isEmpty() || 
-			(!(tfUsuario.getText().contentEquals("aluno1")) &&
-			(!(tfUsuario.getText().contentEquals("professor1"))) ||
+			(!(tfUsuario.getText().contentEquals("aluno1")) ||
 			!(Arrays.equals("12345".toCharArray(), tfSenha.getPassword())))) {
 			
-			JOptionPane.showMessageDialog(null, "Insira um usuario e senha corretamente para acessar!");
-		} 
-		else if (tfUsuario.getText().contentEquals("professor1")) {
-			TelaProfessor professor = new TelaProfessor();
-			professor.setVisible(true);
-			entrar.setVisible(false);
-		}
-		else {
+			JOptionPane.showMessageDialog(null, "Insira um usuario e senha corretamente para acessar!", "Erro", JOptionPane.ERROR_MESSAGE);
+		} else {
 			TelaAluno aluno = new TelaAluno();
 			aluno.setVisible(true);
 			entrar.setVisible(false);	

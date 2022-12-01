@@ -41,7 +41,7 @@ public class TelaAluno extends JFrame {
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		panel.setBackground(new Color(187, 187, 187));
-		panel.setBounds(0, 0, 493, 38);
+		panel.setBounds(0, 0, 600, 38);
 		contentPane.add(panel);
 		
 		JLabel lblIntroducao = new JLabel(" Introdu\u00E7\u00E3o");
