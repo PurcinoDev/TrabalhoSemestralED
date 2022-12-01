@@ -1,44 +1,27 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+
+import enumeracoes.Fonte;
 
 public class TelaProfessor extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaProfessor frame = new TelaProfessor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaProfessor() {
-		TelaAlunoCadGrupo grupo = new TelaAlunoCadGrupo();
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 266);
+		setResizable(false);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -56,7 +39,7 @@ public class TelaProfessor extends JFrame {
 		panel.add(lblTccsSolicitantes);
 		lblTccsSolicitantes.setVerticalAlignment(SwingConstants.TOP);
 		lblTccsSolicitantes.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTccsSolicitantes.setFont(new Font("Arial", Font.BOLD, 24));
+		lblTccsSolicitantes.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 24));
 		lblTccsSolicitantes.setBackground(new Color(187, 187, 187));
 		
 		JPanel panel_1 = new JPanel();
@@ -66,7 +49,7 @@ public class TelaProfessor extends JFrame {
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Grupo s\u00E9rio de Trabalho");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNewLabel.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 14));
 		lblNewLabel.setBounds(10, 11, 219, 14);
 		panel_1.add(lblNewLabel);
 		
@@ -76,7 +59,7 @@ public class TelaProfessor extends JFrame {
 		panel_1.add(btnRecusar);
 		
 		JButton btnAceitar = new JButton("ACEITAR");
-		btnAceitar.setFont(new Font("Arial", Font.BOLD, 11));
+		btnAceitar.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 11));
 		btnAceitar.setBounds(138, 36, 118, 23);
 		panel_1.add(btnAceitar);
 		

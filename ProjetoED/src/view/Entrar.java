@@ -38,15 +38,6 @@ public class Entrar extends JFrame {
 	}
 	
 	public Entrar() {
-		
-//		ControllerCadastro contCad = new ControllerCadastro();
-//		try {
-//			contCad.insereArquivoAluno("C:\\","AlunosGeral.csv");
-//			contCad.insereArquivoProfessor("C:\\","ProfessoresGeral.csv");
-//			} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 509, 353);
 		setResizable(false);
@@ -80,22 +71,7 @@ public class Entrar extends JFrame {
 		
 		JButton btnEntrar = new JButton("ENTRAR");
 		btnEntrar.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 11));
-		btnEntrar.addActionListener((ActionEvent e) -> {
-			if (tfUsuario.getText().isEmpty() || 
-			(!(tfUsuario.getText().contentEquals("aluno1")) &&
-			(!(tfUsuario.getText().contentEquals("professor1"))) ||
-			!(Arrays.equals("12345".toCharArray(), tfSenha.getPassword())))) {
-				JOptionPane.showMessageDialog(null, "Insira um usuario e senha corretamente para acessar");
-			} else if (tfUsuario.getText().contentEquals("professor1")) {
-				TelaProfessor professor = new TelaProfessor();
-				professor.setVisible(true);
-				entrar.setVisible(false);
-			}else {
-				TelaAluno aluno = new TelaAluno();
-				aluno.setVisible(true);
-				entrar.setVisible(false);	
-			}
-		});
+		btnEntrar.addActionListener((ActionEvent e) -> entrar());
 		btnEntrar.setBounds(236, 223, 118, 23);
 		contentPane.add(btnEntrar);
 		
@@ -120,9 +96,30 @@ public class Entrar extends JFrame {
 		contentPane.add(tfSenha);
 		tfSenha.setColumns(10);
 		
-		JButton btnNewButton = new JButton("CADASTRAR");
-		btnNewButton.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 11));
-		btnNewButton.setBounds(365, 223, 118, 23);
-		contentPane.add(btnNewButton);
+		JButton btnCadastrar = new JButton("CADASTRAR");
+		btnCadastrar.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 11));
+		btnCadastrar.setBounds(365, 223, 118, 23);
+		btnCadastrar.setEnabled(false);
+		contentPane.add(btnCadastrar);
+	}
+
+	private void entrar() {
+		if (tfUsuario.getText().isEmpty() || 
+			(!(tfUsuario.getText().contentEquals("aluno1")) &&
+			(!(tfUsuario.getText().contentEquals("professor1"))) ||
+			!(Arrays.equals("12345".toCharArray(), tfSenha.getPassword())))) {
+			
+			JOptionPane.showMessageDialog(null, "Insira um usuario e senha corretamente para acessar");
+		} 
+		else if (tfUsuario.getText().contentEquals("professor1")) {
+			TelaProfessor professor = new TelaProfessor();
+			professor.setVisible(true);
+			entrar.setVisible(false);
+		}
+		else {
+			TelaAluno aluno = new TelaAluno();
+			aluno.setVisible(true);
+			entrar.setVisible(false);	
+		}
 	}
 }

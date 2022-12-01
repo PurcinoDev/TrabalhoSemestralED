@@ -1,8 +1,5 @@
 package view;
 
-import model.Aluno;
-import model.GrupoTCC;
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,17 +10,17 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 
 import enumeracoes.Fonte;
-import javax.swing.JList;
-import javax.swing.border.MatteBorder;
+import model.GrupoTCC;
 
 public class TelaAlunoCadGrupo extends JFrame {
 
