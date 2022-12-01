@@ -45,14 +45,6 @@ public class Entrar extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null); 
 		
-		try {
-			java.awt.Image icon = ImageIO.read(getClass().getResourceAsStream("/image/ainz.png"));
-			setIconImage(icon);
-		} 
-		catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
