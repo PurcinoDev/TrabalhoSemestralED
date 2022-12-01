@@ -1,7 +1,7 @@
 package controller;
 
-import model.Aluno;
-import model.Professor;
+import model.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -127,46 +127,37 @@ public class ControllerCadastro {
 		
 	}
 	
-	public void insereArquivoAluno(String caminho, String nomeArquivo) throws Exception {
-
+	public void criaGrupo(GrupoTCC grupo, String caminho, String nomeArquivo) throws Exception {
 		File dir = new File(caminho);
-
+		
 		if (dir.exists() && dir.isDirectory()) {
-			Lista lAluno = new Lista();
 			File arq = new File(caminho, nomeArquivo);
-
-			FileInputStream fluxo = new FileInputStream(arq);
-			InputStreamReader leFluxo = new InputStreamReader(fluxo);
-			BufferedReader buffer = new BufferedReader(leFluxo);
-			String linha = buffer.readLine();
-
-			while (linha != null) {
-				if (linha.contains(";")) {
-					String[] vetorDeLinha = linha.split(";");
-					Aluno aluno = new Aluno();
-					aluno.usuario = vetorDeLinha[0];
-					aluno.curso = vetorDeLinha[1];
-					aluno.email = vetorDeLinha[2];
-					aluno.semestre = vetorDeLinha[3];
-					aluno.turno = vetorDeLinha[4];
-					aluno.senha = vetorDeLinha[5];
-					aluno.RA = Double.parseDouble(vetorDeLinha[6]);
-					if (lAluno.isEmpty()) {
-						lAluno.addFirst(aluno);
-					} else {
-						lAluno.addLast(aluno);
-					}
-
-					linha = buffer.readLine();
-				}
+			
+			StringBuffer buffer = new StringBuffer();
+			String linha = "";
+			linha = grupo.modalidade + ";" + grupo.nome + ";" + grupo.Professor + ";" + grupo.tema;
+			
+			String[] array1 = grupo.nomeIntegrantes;
+			int aux2 = array1.length;
+			for (int i = 0; i < aux2; i++) {
+				linha += array1[i];
 			}
-			buffer.close();
-			leFluxo.close();
-			fluxo.close();
+			buffer.append(linha);
+			
+			FileWriter abreArquivo = new FileWriter(arq);
+			PrintWriter escreveArq = new PrintWriter(abreArquivo);
+			escreveArq.write(buffer.toString());
+			escreveArq.flush();
+			escreveArq.close();
+			abreArquivo.close();
 		} else {
-			throw new IOException("Arquivo inválido");
+			throw new IOException("Diretório inválido");
 		}
-
+	}
+	
+	public void deleteGrupo(String caminho, String nomeArquivo) {
+		File arq = new File(caminho, nomeArquivo);
+		arq.delete();
 	}
 
 }
