@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -41,6 +43,15 @@ public class Entrar extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 509, 353);
 		setResizable(false);
+		setLocationRelativeTo(null); 
+		
+		try {
+			java.awt.Image icon = ImageIO.read(getClass().getResourceAsStream("/image/ainz.png"));
+			setIconImage(icon);
+		} 
+		catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -109,7 +120,7 @@ public class Entrar extends JFrame {
 			(!(tfUsuario.getText().contentEquals("professor1"))) ||
 			!(Arrays.equals("12345".toCharArray(), tfSenha.getPassword())))) {
 			
-			JOptionPane.showMessageDialog(null, "Insira um usuario e senha corretamente para acessar");
+			JOptionPane.showMessageDialog(null, "Insira um usuario e senha corretamente para acessar!");
 		} 
 		else if (tfUsuario.getText().contentEquals("professor1")) {
 			TelaProfessor professor = new TelaProfessor();
