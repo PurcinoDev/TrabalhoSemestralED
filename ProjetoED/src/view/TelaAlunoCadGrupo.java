@@ -23,11 +23,12 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
-import panel.enumeracoes.Fonte;
+import enumeracoes.Fonte;
 import javax.swing.JList;
 import javax.swing.border.MatteBorder;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
 
 public class TelaAlunoCadGrupo extends JFrame {
 
@@ -37,6 +38,7 @@ public class TelaAlunoCadGrupo extends JFrame {
 	private JComboBox<String> comboModalidadeGrupo;
 	private JComboBox<String> comboOrientador;
 	private JTextField tfTemaGrupo;
+	private JList list;
 	ControllerCadastro contCad = new ControllerCadastro();
 
 	public TelaAlunoCadGrupo() {
@@ -52,7 +54,7 @@ public class TelaAlunoCadGrupo extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(74, 74, 74, 125));
-		panel_1.setBounds(0, 0, 602, 368);
+		panel_1.setBounds(0, 0, 538, 368);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -61,12 +63,12 @@ public class TelaAlunoCadGrupo extends JFrame {
 		panelModal.setBackground(new Color(255, 255, 255));
 		panel_1.add(panelModal);
 		panelModal.setLayout(null);
-		
+
 		DefaultListModel DLM = new DefaultListModel();
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 196, 329, 48);
+		scrollPane.setBounds(10, 196, 240, 48);
 		panelModal.add(scrollPane);
 		JList list = new JList();
 		scrollPane.setViewportView(list);
@@ -103,8 +105,9 @@ public class TelaAlunoCadGrupo extends JFrame {
 		panelModal.add(comboModalidadeGrupo);
 
 		comboOrientador = new JComboBox<>();
-		comboOrientador.setModel(new DefaultComboBoxModel<>(new String [] { "=========== Escolha seu Orientador ===========", 
-				"Leandro Colevati", "Cristina Correa", "Wellington Pinto" }));
+		comboOrientador
+				.setModel(new DefaultComboBoxModel<>(new String[] { "=========== Escolha seu Orientador ===========",
+						"Leandro Colevati", "Cristina Correa", "Wellington Pinto" }));
 		comboOrientador.setBounds(10, 150, 329, 20);
 		panelModal.add(comboOrientador);
 
@@ -120,12 +123,12 @@ public class TelaAlunoCadGrupo extends JFrame {
 
 		tfTemaGrupo = new JTextField();
 		tfTemaGrupo.setColumns(10);
-		tfTemaGrupo.setBounds(10, 264, 329, 20);
+		tfTemaGrupo.setBounds(10, 281, 329, 20);
 		panelModal.add(tfTemaGrupo);
 
 		JLabel lblModalidadeGrupo_1_1_1 = new JLabel("Tema do projeto");
 		lblModalidadeGrupo_1_1_1.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 12));
-		lblModalidadeGrupo_1_1_1.setBounds(10, 248, 158, 14);
+		lblModalidadeGrupo_1_1_1.setBounds(10, 265, 158, 14);
 		panelModal.add(lblModalidadeGrupo_1_1_1);
 
 //================================================== BOTÃO DE CANCELAR ==================================================
@@ -142,8 +145,8 @@ public class TelaAlunoCadGrupo extends JFrame {
 		JButton btnSalvarGrupo = new JButton("SALVAR");
 		btnSalvarGrupo.addActionListener((ActionEvent e) -> {
 			if (tfNomeGrupo.getText().isEmpty()
-					|| comboModalidadeGrupo.getSelectedItem() == "=========== Escolha sua Modalidade ===========" || 
-					comboOrientador.getSelectedItem() == "=========== Escolha seu Orientador ===========") {
+					|| comboModalidadeGrupo.getSelectedItem() == "=========== Escolha sua Modalidade ==========="
+					|| comboOrientador.getSelectedItem() == "=========== Escolha seu Orientador ===========") {
 				JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos de cadastro do TCC");
 			} else {
 				GrupoTCC grupoTCC = new GrupoTCC();
@@ -159,13 +162,15 @@ public class TelaAlunoCadGrupo extends JFrame {
 		});
 		btnSalvarGrupo.setBounds(253, 312, 86, 23);
 		panelModal.add(btnSalvarGrupo);
-		
+
 //================================================== BOTÃO DE ATUALIZAR ==================================================
 		JButton btnAtualizarAlunos = new JButton("Atualizar Alunos");
 		btnAtualizarAlunos.addActionListener((ActionEvent e) -> {
 			String[] array;
 			try {
-				array = contCad.fileToList("aluno","C:\\TEMP","AlunosGeral.csv");
+				array = contCad.fileToList("aluno", "C:\\Users"
+						+ "\\felip\\Downloads\\TrabalhoSemestralED-main\\TrabalhoSemestralED-main"
+						+ "\\ProjetoED\\src\\resources", "AlunosGeral.csv");
 				int aux = array.length;
 				for (int i = 0; i < aux; i++) {
 					String aux1 = array[i];
@@ -179,6 +184,23 @@ public class TelaAlunoCadGrupo extends JFrame {
 		btnAtualizarAlunos.setBounds(120, 312, 111, 23);
 		panelModal.add(btnAtualizarAlunos);
 		
+		JButton btnAdicionarIntegrante = new JButton("Adicionar");
+		btnAdicionarIntegrante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (list.getSelectedValue() != null) {
+					String[] integrantes = (String[]) list.getSelectedValue();
+				
+					
+					int tamanho = integrantes.length > 0 ? integrantes.length : null;
+
+					DLM.removeElement(integrantes[tamanho - 1]);
+				}
+				
+			}
+		});
+		btnAdicionarIntegrante.setBounds(253, 209, 89, 23);
+		panelModal.add(btnAdicionarIntegrante);
+
 		JLabel lblSemGrupo = new JLabel("Voc\u00EA n\u00E3o tem grupo");
 		lblSemGrupo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSemGrupo.setFont(new Font(Fonte.ARIAL.getFonte(), Font.PLAIN, 18));
@@ -205,5 +227,4 @@ public class TelaAlunoCadGrupo extends JFrame {
 		lblIntroducao.setBackground(new Color(187, 187, 187));
 		lblIntroducao.setFont(new Font(Fonte.ARIAL.getFonte(), Font.BOLD, 24));
 	}
-
 }
