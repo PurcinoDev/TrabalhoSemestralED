@@ -64,8 +64,6 @@ public class TelaAlunoCadGrupo extends JFrame {
 		panel_1.add(panelModal);
 		panelModal.setLayout(null);
 
-		DefaultListModel DLM = new DefaultListModel();
-
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 196, 240, 48);
@@ -166,11 +164,10 @@ public class TelaAlunoCadGrupo extends JFrame {
 //================================================== BOTÃO DE ATUALIZAR ==================================================
 		JButton btnAtualizarAlunos = new JButton("Atualizar Alunos");
 		btnAtualizarAlunos.addActionListener((ActionEvent e) -> {
+			DefaultListModel DLM = new DefaultListModel();
 			String[] array;
 			try {
-				array = contCad.fileToList("aluno", "C:\\Users"
-						+ "\\felip\\Downloads\\TrabalhoSemestralED-main\\TrabalhoSemestralED-main"
-						+ "\\ProjetoED\\src\\resources", "AlunosGeral.csv");
+				array = contCad.fileToList("aluno", "C:\\TEMP", "AlunosGeral.csv");
 				int aux = array.length;
 				for (int i = 0; i < aux; i++) {
 					String aux1 = array[i];
